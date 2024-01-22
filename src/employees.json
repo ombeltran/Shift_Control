@@ -1,0 +1,32 @@
+[
+    {
+        "id": "1",
+        "name": "person_1",
+        "workplace": "A",
+        "available": "no"
+    },
+    {
+        "id": "2",
+        "name": "person_2",
+        "workplace": "B",
+        "available": "no"
+    },
+    {
+        "id": "3",
+        "name": "person_3",
+        "workplace": "C",
+        "available": "no"
+    },
+    {
+        "id": "4",
+        "name": "person_4",
+        "workplace": "D",
+        "available": "no"
+    },
+    {
+        "id": "5",
+        "name": "person_5",
+        "workplace": "E",
+        "available": "no"
+    }
+]
