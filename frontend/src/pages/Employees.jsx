@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import CardEmployee from "../components/CardEmployee";
+// import { CustomContext } from "../context/CustomProvider";
 import { IoMdReturnLeft } from "react-icons/io";
 import { Link } from "react-router-dom";
-import { getEmployees } from "../api/api.routes";
+import { getEmployees, updateEmployees } from "../api/api.routes.employees";
+// import { getCustomers, createCustomers } from "../api/api.routes.customers";
 
 function Employees() {
     const [employeesData, setEmployeesData] = useState(null);
     const [clickEmployee, setClickEmployee] = useState(null);
+    // const { setTurn, turn } = useContext(CustomContext);
 
     useEffect(() => {
         getEmployees().then(data => setEmployeesData(data));
@@ -32,26 +35,20 @@ function Employees() {
             setClickEmployee(data);
         }
 
-
+        // call update employees function 
         try {
-            const response = await fetch(`http://localhost:3000/api/employees/${employeeName}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-            });
-
-            if (response.ok) {
+            const res = await updateEmployees(employeeName, data);
+            if (res.ok) {
                 const updatedEmployees = await getEmployees();
                 setEmployeesData(updatedEmployees);
             } else {
-                console.error('Error updating employee:', response.statusText);
+                console.error('Error updating employee:', res.statusText);
             }
         } catch (error) {
             console.error('Error updating employee:', error);
         }
     };
+
 
     return (
         <div>

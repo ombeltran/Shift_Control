@@ -4,9 +4,15 @@ export const CustomContext = createContext();
 
 export const CustomProvider = ({ children }) => {
     const [customer, setCustomer] = useState([]);
+    // const [turn, setTurn] = useState([]);
 
     return (
-        <CustomContext.Provider value={{ customer, setCustomer }}>
+        <CustomContext.Provider
+            value={{
+                customer,
+                setCustomer
+            }}
+        >
             {children}
         </CustomContext.Provider>
     );

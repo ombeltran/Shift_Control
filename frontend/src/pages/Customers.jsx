@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { CustomContext } from "../context/CustomProvider";
-import { getEmployees } from "../api/api.routes";
+import { getEmployees } from "../api/api.routes.employees";
 import { IoMdReturnLeft } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { Card } from "../components/Card";
@@ -20,11 +20,11 @@ function Customers() {
                 <h1 className='text-5xl text-white font-bold m-10'>
                     Separate your turn
                 </h1>
-                <Card className='h-[300px] w-80 md:w-72' >
+                <Card className='h-[390px] w-80 md:w-72' >
                     <Form employeesData={employeesData} />
                 </Card>
             </div>
-            <div className='flex flex-col items-center w-full h-screen bg-white/5'>
+            {/* <div className='flex flex-col items-center w-full h-screen bg-white/5'>
                 <h1 className='text-5xl text-white font-bold m-10'>
                     Customer queue
                 </h1>
@@ -37,7 +37,7 @@ function Customers() {
                         </div>
                     ))}
                 </Card>
-            </div>
+            </div> */}
             <Link to="/" >
                 <IoMdReturnLeft
                     className='absolute bottom-4 right-4 text-5xl text-white'

@@ -1,7 +1,9 @@
 const express = require('express');
-const app = express();
 const morgan = require('morgan');
 const cors = require('cors');
+const connectDb = require('./database');
+const app = express();
+
 
 //settings
 app.set('port', process.env.PORT || 3000);
@@ -17,9 +19,12 @@ app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 
 //routes
-app.use('/api',require('./routes/index'));
+app.use('/api/employees',require('./routes/employees.routes'));
+app.use('/api/customers',require('./routes/customers.routes'));
 
 //starting server
 app.listen(3000, () => {
     console.log(`Server on port ${3000}`);
 });
+
+connectDb();

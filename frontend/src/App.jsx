@@ -1,6 +1,6 @@
 import React from 'react';
 import Home from "./pages/Home";
-import Employees from './pages/employees';
+import Employees from './pages/Employees';
 import Customers from './pages/Customers';
 import { Route, Routes } from "react-router-dom";
 import CustomProvider from './context/CustomProvider';
