@@ -4,7 +4,6 @@ export const CustomContext = createContext();
 
 export const CustomProvider = ({ children }) => {
     const [customer, setCustomer] = useState([]);
-    // const [turn, setTurn] = useState([]);
 
     return (
         <CustomContext.Provider

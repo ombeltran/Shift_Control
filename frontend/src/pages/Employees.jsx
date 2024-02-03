@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import CardEmployee from "../components/CardEmployee";
-// import { CustomContext } from "../context/CustomProvider";
 import { IoMdReturnLeft } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { getEmployees, updateEmployees } from "../api/api.routes.employees";
-// import { getCustomers, createCustomers } from "../api/api.routes.customers";
 
 function Employees() {
     const [employeesData, setEmployeesData] = useState(null);

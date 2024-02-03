@@ -10,7 +10,7 @@ function CardEmployee({ employeesData, handleClickEmployee }) {
                 {employeesData ? (
                     employeesData.map(employee => (
                         <div
-                            key={employee.id}
+                            key={employee._id}
                             className='flex justify-around py-3 px-4 h-auto w-[80%]
                             text-white gap-2 bg-gradient-to-b from-transparent/70 to-black 
                             border-2 rounded-2xl mb-3 cursor-pointer'

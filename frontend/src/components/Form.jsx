@@ -1,12 +1,13 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useForm } from "react-hook-form";
-import { CustomContext } from "../context/CustomProvider";
-import { getCustomers } from "../api/api.routes.customers";
+import {
+    getCustomersName,
+    getCustomersNameTurn,
+    updateCustomers
+} from "../api/api.routes.customers";
 
 export function Form({ employeesData }) {
-    const { setCustomer, customer } = useContext(CustomContext);
-    const [selectedBarber, setSelectedBarber] = useState('');
-    const [dataCustomer, setDataCustomer] = useState([]);
+    const [selectedBarber, setSelectedBarber] = useState([]);
 
     const {
         register,
@@ -14,28 +15,23 @@ export function Form({ employeesData }) {
         reset,
     } = useForm()
 
-    const fetchDataCustomer = async () => {
-        try {
-            const data = await getCustomers();
-            setDataCustomer(data);
-        } catch (error) {
-            console.error('Error fetching customer data:', error);
+    const onSubmit = async (data) => {
+        const customer = await getCustomersNameTurn(data.worker, Number(data.turns));
+        const newCustomer = {
+            name: customer[0].name,
+            customerName: data.customerName,
+            workplace: customer[0].workplace,
+            turn: customer[0].turn,
+            available: customer[0].available,
         }
-    };
-
-    useEffect(() => {
-        fetchDataCustomer();
-    }, []);
-
-    const onSubmit = (data) => {
-        setCustomer([...customer, data]);
-        console.log(customer);
+        await updateCustomers(data.worker, Number(data.turns), newCustomer);
         reset();
     }
 
-    const handleChange = (e) => {
-        const selectedValue = e.target.value;
-        setSelectedBarber(selectedValue);
+    const handleChange = async (e) => {
+        const selectedValue = e.target.value.trim();
+        const turnBarber = await getCustomersName(selectedValue, 'yes');
+        setSelectedBarber(turnBarber);
     };
 
     return (
@@ -82,15 +78,11 @@ export function Form({ employeesData }) {
                 required
             >
                 <option value="">Select a turn:</option>
-                {
-                    dataCustomer.map(({ worker, workplace, turn }, index) => (
-                        worker === selectedBarber ? (
-                            <option key={index} value={`${workplace}${turn}`}>
-                                {workplace}{turn}
-                            </option>
-                        ) : null
-                    ))
-                }
+                {selectedBarber && selectedBarber.map(({ _id, turn, workplace }) => (
+                    <option key={_id} value={turn}>
+                        {workplace}{turn}
+                    </option>
+                ))}
             </select>
 
             <label
