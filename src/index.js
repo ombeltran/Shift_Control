@@ -21,6 +21,7 @@ app.use(express.json());
 //routes
 app.use('/api/employees',require('./routes/employees.routes'));
 app.use('/api/customers',require('./routes/customers.routes'));
+app.use('/api/users',require('./routes/users.routes'));
 
 //starting server
 app.listen(3000, () => {

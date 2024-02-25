@@ -38,7 +38,7 @@ router.get('/name/:name/:turn', async (req, res) => {
 
 
 //add meny registers
-router.post('/', async(req,res) => {
+router.post('/', async (req, res) => {
     const customers = req.body;
     await Customer.insertMany(customers);
     res.json({ status: 'Customers Saved' });
@@ -46,8 +46,8 @@ router.post('/', async(req,res) => {
 
 //update a register
 router.put('/:name/:turn', async (req, res) => {
-    const { name, customerName, workplace, turn, available } = req.body;
-    const newCustomer = { name, customerName, workplace, turn, available };
+    const { name, customerName, workplace, turn, available, served, servedId } = req.body;
+    const newCustomer = { name, customerName, workplace, turn, available, served, servedId };
     await Customer.findOneAndUpdate({ name: req.params.name, turn: req.params.turn }, newCustomer, { new: true });
     res.json({ status: 'Customer Updated' });
 });
@@ -58,13 +58,23 @@ router.put('/updateKeys', async (req, res) => {
 
     try {
         await Customer.updateMany({}, { $set: { available: newAvailableValue, customerName: newCustomerNameValue } });
-        res.json({ status: 'Valores actualizados en todos los documentos' });
+        res.json({ status: 'Updating values in all documents' });
     } catch (error) {
         console.error('Error updating values in all documents:', error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
 
+//update all registers
+router.put('/reset', async (req, res) => {
+    try {
+        await Customer.updateMany({}, { $set: { customerName: "", available: "yes", served: "no", servedId: 0 } });
+        res.json({ status: 'Updating values in all documents' });
+    } catch (error) {
+        console.error('Error updating values in all documents:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+})
 
 
 module.exports = router;

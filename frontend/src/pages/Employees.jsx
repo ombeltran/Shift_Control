@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import CardEmployee from "../components/CardEmployee";
-import { IoMdReturnLeft } from "react-icons/io";
-import { Link } from "react-router-dom";
 import { getEmployees, updateEmployees } from "../api/api.routes.employees";
+import { updateResetAllCustomers } from "../api/api.routes.customers";
+import { Botton } from '../components/Botton';
+import { useAlert } from 'react-alert';
 
 function Employees() {
     const [employeesData, setEmployeesData] = useState(null);
     const [clickEmployee, setClickEmployee] = useState(null);
-    // const { setTurn, turn } = useContext(CustomContext);
+
+    const alert = useAlert();
 
     useEffect(() => {
         getEmployees().then(data => setEmployeesData(data));
@@ -47,18 +49,31 @@ function Employees() {
         }
     };
 
+    const handleReset = async () => {
+        try {
+            const res = await updateResetAllCustomers();
+            if (res.ok) {
+                alert.success('Successfully reset');
+            }
+        } catch (error) {
+            console.error('Error when run updateResetAllCustomers:', error);
+        }
+    }
 
     return (
-        <div>
+        <div >
             <CardEmployee
                 employeesData={employeesData}
                 handleClickEmployee={handleClickEmployee}
             />
-            <Link to="/" >
-                <IoMdReturnLeft
-                    className='absolute bottom-4 right-4 text-5xl text-white'
-                />
-            </Link>
+
+            <Botton
+                className='absolute bottom-4 right-7 text-sm text-white'
+                onClick={handleReset}
+            >
+                Reset
+            </Botton>
+            
         </div>
     )
 }

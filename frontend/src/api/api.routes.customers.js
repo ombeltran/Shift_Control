@@ -41,7 +41,22 @@ export const updateCustomers = async (name, turn, data) => {
         });
         return response;
     } catch (error) {
-        console.error('Error fetching employee data:', error);
+        console.error('Error fetching customer data:', error);
+    }
+}
+
+export const updateResetAllCustomers = async () => {
+    try {
+        const response = await fetch('http://localhost:3000/api/customers/reset', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({}),
+        });
+        return response;
+    } catch (error) {
+        console.error('Error updating customer data:', error);
     }
 }
 

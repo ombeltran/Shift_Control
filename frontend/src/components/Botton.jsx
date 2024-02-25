@@ -1,6 +1,6 @@
-import React from 'react'
+import React from 'react';
 
-export const Botton = ({ children, props, className }) => {
+export const Botton = ({ children, className, ...props }) => {
     return (
         <button
             className={`bg-red-700 py-2 px-6 rounded-full font-bold hover:scale-105 
@@ -8,7 +8,6 @@ export const Botton = ({ children, props, className }) => {
             {...props}
         >
             {children}
-
         </button>
-    )
-}
+    );
+};

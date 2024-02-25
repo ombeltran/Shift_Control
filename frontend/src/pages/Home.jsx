@@ -7,7 +7,7 @@ const Home = () => {
     return (
         <div className='flex justify-center items-center h-screen'>
             <Card>
-                <Link to="/employees">
+                <Link to="/login">
                     <Botton>
                         Employees
                     </Botton>

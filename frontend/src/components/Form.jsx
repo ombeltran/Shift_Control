@@ -5,9 +5,12 @@ import {
     getCustomersNameTurn,
     updateCustomers
 } from "../api/api.routes.customers";
+import { useAlert } from 'react-alert';
+
 
 export function Form({ employeesData }) {
     const [selectedBarber, setSelectedBarber] = useState([]);
+    const alert = useAlert();
 
     const {
         register,
@@ -22,9 +25,10 @@ export function Form({ employeesData }) {
             customerName: data.customerName,
             workplace: customer[0].workplace,
             turn: customer[0].turn,
-            available: customer[0].available,
+            available: 'no'
         }
         await updateCustomers(data.worker, Number(data.turns), newCustomer);
+        alert.success('Shift successfully assigned!');
         reset();
     }
 
@@ -43,7 +47,7 @@ export function Form({ employeesData }) {
                 htmlFor="worker"
                 className='text-2xl text-white font-bold mb-2'
             >
-                Barber
+                Employee
             </label>
             <select
                 className='w-56 p-1 border-2 rounded-lg text-black mb-4'
@@ -53,7 +57,7 @@ export function Form({ employeesData }) {
                 required
                 onChange={handleChange}
             >
-                <option value="">Select a barber:</option>
+                <option value="">Select a employee:</option>
                 {
                     employeesData && employeesData.filter(({ available }) => available === "yes")
                         .map(({ name }) => (
