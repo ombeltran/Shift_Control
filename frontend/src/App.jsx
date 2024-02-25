@@ -14,7 +14,7 @@ import Login from './pages/Login';
 
 const alertOptions = {
   position: positions.BOTTOM_CENTER,
-  timeout: 3000,
+  timeout: 2000,
   offset: '30px',
   transition: transitions.SCALE
 };

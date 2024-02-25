@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import CardEmployee from "../components/CardEmployee";
-import { getEmployees, updateEmployees } from "../api/api.routes.employees";
+import { getEmployees, updateEmployees, updateResetAllEmployees } from "../api/api.routes.employees";
 import { updateResetAllCustomers } from "../api/api.routes.customers";
 import { Botton } from '../components/Botton';
 import { useAlert } from 'react-alert';
@@ -51,9 +51,13 @@ function Employees() {
 
     const handleReset = async () => {
         try {
-            const res = await updateResetAllCustomers();
-            if (res.ok) {
+            const resCustomer = await updateResetAllCustomers();
+            const resEmployee = await updateResetAllEmployees();
+            if (resCustomer.ok && resEmployee.ok) {
                 alert.success('Successfully reset');
+                setTimeout(() => {
+                    window.location.reload();
+                }, 2000);
             }
         } catch (error) {
             console.error('Error when run updateResetAllCustomers:', error);
@@ -73,7 +77,7 @@ function Employees() {
             >
                 Reset
             </Botton>
-            
+
         </div>
     )
 }

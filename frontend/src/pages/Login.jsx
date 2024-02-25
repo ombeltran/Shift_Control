@@ -38,7 +38,7 @@ const Login = () => {
                 alert.success('Password update successful!');
                 setTimeout(() => {
                     navigate('/employees');
-                }, 3000);
+                }, 2000);
             }
         } catch (error) {
             console.error('Error validating password:', error);

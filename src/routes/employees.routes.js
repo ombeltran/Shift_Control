@@ -28,4 +28,17 @@ router.put('/:name', async(req, res) => {
 
 });
 
+//update all registers
+router.put('/', async (req, res) => {
+    try {
+        const result = await Employee.updateMany({}, { $set: { available: "no" } });
+        console.log(result); // Imprime el resultado para verificar
+        res.json({ status: 'Updating values in all documents' });
+    } catch (error) {
+        console.error('Error updating values in all documents:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+
 module.exports = router;
