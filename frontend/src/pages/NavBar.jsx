@@ -5,7 +5,7 @@ import { listNavBar } from "./listNavBar";
 const NavBar = () => {
     return (
         <nav className='fixed flex items-center justify-between text-white font-bold
-        bg-slate-400/20 shadow-lg shadow-white/20 px-11 py-3 w-screen z-50' >
+        bg-slate-400/20 shadow-lg shadow-white/20 px-11 py-3 w-full z-50' >
             <Link to='/'>
                 <h1 className='text-2xl'>My Bussiness</h1>
             </Link>

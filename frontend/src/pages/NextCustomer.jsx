@@ -57,7 +57,7 @@ function NextCustomer() {
 
     return (
         <div className='absolute flex justify-center items-center text-white w-full mt-28'>
-            <Card className='flex flex-col h-auto min-h-48 w-[370px] pt-4 pb-6 px-6'>
+            <Card className='flex flex-col h-auto min-h-48 md:w-[370px] w-[340px] pt-4 pb-6 px-6'>
                 <form
                     className='flex flex-col border-b-2 pb-4 w-full'
                 >
@@ -89,7 +89,7 @@ function NextCustomer() {
                         served === 'no' && (
                             <div
                                 key={_id}
-                                className='flex justify-center items-center text-xl w-80'
+                                className='flex justify-center items-center text-xl md:w-80 w-72'
                             >
                                 <div className='flex text-xl w-64 py-3 gap-3'>
                                     <p>{workplace}{turn}</p>

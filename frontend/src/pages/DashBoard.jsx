@@ -26,7 +26,7 @@ function DashBoard() {
 
     return (
         <div className='absolute flex justify-center items-center text-white w-full mt-28'>
-            <Card className='flex flex-col h-auto w-auto p-10 '>
+            <Card className='flex flex-col h-auto w-auto p-10 scale-[60%] sm:scale-[80%] lg:scale-100 '>
                 <div className='flex w-full text-4xl font-bold gap-10'>
                     <h2>Worker</h2>
                     <h2>Turn</h2>
@@ -35,10 +35,10 @@ function DashBoard() {
                 {availableEmployees.map(({ _id, name, available }) => (
                     available === 'yes' && (<div
                         key={_id}
-                        className='flex items-center text-2xl pb-2 gap-14 w-[650px] border-b-2'
+                        className='flex items-center text-2xl pb-2 gap-14 w-[550px] border-b-2'
                     >
                         <h1 className='min-w-28 max-w-28'>{name}</h1>
-                        <div className='flex gap-14 items-center text-5xl font-bold w-[500px]'>
+                        <div className='flex gap-14 items-center text-5xl font-bold w-[400px]'>
                             <div>
                                 {
                                     availableTurns

@@ -18,7 +18,7 @@ function Customers() {
     return (
         <div className='flex w-full h-screen'>
             <div className='flex flex-col items-center w-full h-screen'>
-                <h1 className='text-5xl text-white font-bold m-10'>
+                <h1 className='text-5xl text-center text-white font-bold m-10'>
                     Separate your turn
                 </h1>
                 <Card className='h-[390px] w-80 md:w-72' >
