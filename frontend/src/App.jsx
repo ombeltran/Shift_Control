@@ -24,7 +24,6 @@ const App = () => {
     <>
       <CustomProvider>
         <AlertProvider template={AlertTemplate} {...alertOptions}>
-          {/* <NavBar /> */}
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/customers' element={<Customers />} />
