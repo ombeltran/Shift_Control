@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { getEmployees } from "../api/api.routes.employees";
 import { getCustomers } from "../api/api.routes.customers";
 import { Card } from "../components/Card";
+// import { IsAuth } from "../context/isAuth";
 
 function DashBoard() {
     const [availableEmployees, setAvailableEmployees] = useState([]);
@@ -26,6 +27,7 @@ function DashBoard() {
 
     return (
         <div className='absolute flex justify-center items-center text-white w-full mt-28'>
+            {/* <IsAuth stringRoute='/login' /> */}
             <Card className='flex flex-col h-auto w-auto p-10 scale-[60%] sm:scale-[80%] lg:scale-100 '>
                 <div className='flex w-full text-4xl font-bold gap-10'>
                     <h2>Worker</h2>

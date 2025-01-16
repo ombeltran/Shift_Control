@@ -1,5 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react';
-// import { CustomContext } from "../context/CustomProvider";
+import React, { useEffect, useState } from 'react';
 import { getEmployees } from "../api/api.routes.employees";
 import { IoMdReturnLeft } from "react-icons/io";
 import { Link } from "react-router-dom";
@@ -9,7 +8,6 @@ import { Form } from "../components/Form";
 
 function Customers() {
     const [employeesData, setEmployeesData] = useState(null);
-    // const { customer, setCustomer } = useContext(CustomContext);
 
     useEffect(() => {
         getEmployees().then(data => setEmployeesData(data));

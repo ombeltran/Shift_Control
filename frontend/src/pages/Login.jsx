@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { UserContext } from "../context/UserProvider";
 import { Card } from '../components/Card';
 import { Botton } from '../components/Botton';
 import { postValidatePassword, putUpdatePassword } from '../api/api.routes.users';
@@ -11,6 +12,7 @@ const Login = () => {
     const [fieldPassword, setFieldPassword] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
     const [showNewPassword, setShowNewPassword] = useState(false);
+    const { setloginUser } = useContext(UserContext);
 
     const alert = useAlert();
     const navigate = useNavigate();
@@ -32,6 +34,7 @@ const Login = () => {
         try {
             const response = await postValidatePassword(data);
             if (response.status === 'Successfully login' && !fieldPassword) {
+                setloginUser(data.username);
                 navigate('/employees');
             } else if (fieldPassword && response.status === 'Successfully login') {
                 await putUpdatePassword(data.username, data);
@@ -54,7 +57,7 @@ const Login = () => {
                     <form className='flex flex-col w-64 gap-4' onSubmit={handleSubmit(onSubmit)}>
                         <div className='flex flex-col font-bold relative'>
                             <label htmlFor='username'>User</label>
-                            <input type='text' name='username' className='rounded-lg px-2 text-black' {...register('username')} required />
+                            <input type='text' name='username' className='rounded-lg px-2 text-black' {...register('username')} required autoComplete="username"/>
                         </div>
 
                         <div className='flex flex-col font-bold relative'>
@@ -65,6 +68,7 @@ const Login = () => {
                                 className='rounded-lg px-2 text-black pr-10'
                                 {...register('password')}
                                 required
+                                autoComplete="new-password"
                             />
                             <div className='absolute top-7 right-2 cursor-pointer text-black' onClick={handleShowPassword}>
                                 {showPassword ? <FaEyeSlash /> : <FaEye />}
@@ -77,6 +81,7 @@ const Login = () => {
                                 type={showNewPassword ? 'text' : 'password'}
                                 name='newPassword'
                                 className='rounded-lg px-2 text-black' {...register('newPassword')} min={8}
+                                autoComplete="new-password"
                             />
                             <div className='absolute top-7 right-2 cursor-pointer text-black' onClick={handleShowNewPassword}>
                                 {showNewPassword ? <FaEyeSlash /> : <FaEye />}

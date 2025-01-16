@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { Card } from '../components/Card';
 import { getEmployees } from "../api/api.routes.employees";
 import { getCustomersName, updateCustomers } from "../api/api.routes.customers";
+// import { IsAuth } from "../context/isAuth";
 
 function NextCustomer() {
     const [availableEmployees, setAvailableEmployees] = useState([]);
@@ -57,6 +58,7 @@ function NextCustomer() {
 
     return (
         <div className='absolute flex justify-center items-center text-white w-full mt-28'>
+            {/* <IsAuth stringRoute='/login' /> */}
             <Card className='flex flex-col h-auto min-h-48 md:w-[370px] w-[340px] pt-4 pb-6 px-6'>
                 <form
                     className='flex flex-col border-b-2 pb-4 w-full'

@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { listNavBar } from './listNavBar';
 
 const NavBar = () => {
   const location = useLocation();
   const [selectedOption, setSelectedOption] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     const currentOption = listNavBar.find((item) => item.path === location.pathname);
@@ -30,6 +31,13 @@ const NavBar = () => {
             </Link>
           </li>
         ))}
+
+        <li 
+          className='bg-red-700 px-3 rounded-lg cursor-pointer'
+          onClick={() => navigate('/login') }
+        >
+          Logout
+        </li>
       </ul>
     </nav>
   );

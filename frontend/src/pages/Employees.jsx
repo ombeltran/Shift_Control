@@ -4,6 +4,7 @@ import { getEmployees, updateEmployees, updateResetAllEmployees } from "../api/a
 import { updateResetAllCustomers } from "../api/api.routes.customers";
 import { Botton } from '../components/Botton';
 import { useAlert } from 'react-alert';
+// import { IsAuth } from "../context/isAuth";
 
 function Employees() {
     const [employeesData, setEmployeesData] = useState(null);
@@ -66,6 +67,7 @@ function Employees() {
 
     return (
         <div >
+            {/* <IsAuth stringRoute='/login' /> */}
             <CardEmployee
                 employeesData={employeesData}
                 handleClickEmployee={handleClickEmployee}
